@@ -3,6 +3,18 @@
   "globalDependencies": [
     ".env*"
   ],
+  "globalEnv": [
+    "HOST",
+    "PORT",
+    "MONGODB_URI",
+    "REDIS_URL",
+    "AI_API_URL",
+    "AI_API_KEY",
+    "AI_MODEL",
+    "FRONTEND_ORIGIN",
+    "NEXT_PUBLIC_APP_URL",
+    "NEXT_PUBLIC_API_URL"
+  ],
   "tasks": {
     "build": {
       "dependsOn": [

@@ -1,0 +1,34 @@
+{
+  "name": "@vedaai/backend",
+  "private": true,
+  "dependencies": {
+    "@ai-sdk/openai-compatible": "^2.0.37",
+    "ai": "^6.0.134",
+    "bullmq": "^5.71.0",
+    
+    "date-fns": "^4.1.0",
+    "express": "^5.2.1",
+    "ioredis": "^5.10.1",
+    "jspdf": "^4.2.1",
+    "mongodb": "^7.1.0",
+    "multer": "^2.1.1",
+    "openai": "^6.32.0",
+    "pdf-parse": "^2.4.5",
+    "socket.io": "^4.8.3",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^20",
+    "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "PORT=4000 bun run server.ts",
+    "build": "rm -rf dist && bun x tsc -p tsconfig.json --outDir dist",
+    "lint": "bun x tsc --noEmit -p tsconfig.json",
+    "start": "NODE_ENV=production bun dist/server.js",
+    "start:worker": "NODE_ENV=production bun dist/worker.js",
+    "worker": "bun run worker.ts"
+  }
+}

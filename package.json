@@ -2,26 +2,22 @@
   "name": "vedaai_task",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "bun@1.3.10",
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "16.2.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "dev": "turbo run dev worker --filter=@vedaai/web --filter=@vedaai/backend",
+    "dev:web": "turbo run dev --filter=@vedaai/web",
+    "dev:backend": "turbo run dev --filter=@vedaai/backend",
+    "build": "turbo run build --filter=@vedaai/web --filter=@vedaai/backend",
+    "start": "turbo run start --filter=@vedaai/web --filter=@vedaai/backend",
+    "start:worker": "turbo run start:worker --filter=@vedaai/backend",
+    "lint": "turbo run lint --filter=@vedaai/web --filter=@vedaai/backend",
+    "worker": "turbo run worker --filter=@vedaai/backend"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "turbo": "^2.8.20"
   },
   "ignoreScripts": [
     "sharp",

@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: vedaai-backend
+    env: node
+    buildCommand: cd apps/backend && bun install && bun run build
+    startCommand: cd apps/backend && bun run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 4000
+      - key: MONGODB_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: AI_API_URL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false

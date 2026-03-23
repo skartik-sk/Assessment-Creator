@@ -1,5 +1,6 @@
 # Render.com Deployment Configuration
-# This will deploy BOTH Backend API and Worker from the same repo
+# Place this in apps/backend/ folder
+# When deploying to Render, set Root Directory to: apps/backend
 
 services:
   # Backend API Service (Express + Socket.IO)
@@ -7,7 +8,7 @@ services:
     name: vedaai-backend-api
     env: node
     region: oregon
-    buildCommand: bun install && bun run build
+    buildCommand: bun install && bun run build && ls -la dist/
     startCommand: bun run start
     envVars:
       - key: NODE_VERSION
@@ -33,14 +34,14 @@ services:
         sync: false
       # Frontend URL (for CORS)
       - key: FRONTEND_ORIGIN
-        value: https://assessment-creator.vercel.app
+        value: https://vedaai.skartik.xyz
 
   # Background Worker Service (BullMQ Job Processor)
   - type: worker
     name: vedaai-worker
     env: node
     region: oregon
-    buildCommand: bun install && bun run build
+    buildCommand: bun install && bun run build && ls -la dist/
     startCommand: bun run start:worker
     envVars:
       - key: NODE_VERSION

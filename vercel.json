@@ -1,6 +1,7 @@
 {
-  "buildCommand": "cd apps/web && bun run build",
-  "outputDirectory": "apps/web/.next",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "bun run build",
   "installCommand": "bun install",
-  "framework": null
+  "framework": null,
+  "outputDirectory": "apps/web/.next"
 }

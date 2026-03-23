@@ -1,25 +1,62 @@
+# Render.com Deployment Configuration
+# This will deploy BOTH Backend API and Worker from the same repo
+
 services:
+  # Backend API Service (Express + Socket.IO)
   - type: web
-    name: vedaai-backend
+    name: vedaai-backend-api
     env: node
-    buildCommand: cd apps/backend && bun install && bun run build
-    startCommand: cd apps/backend && bun run start
+    region: oregon
+    buildCommand: bun install && bun run build
+    startCommand: bun run start
     envVars:
       - key: NODE_VERSION
         value: 20
+      - key: NODE_ENV
+        value: production
       - key: HOST
         value: 0.0.0.0
       - key: PORT
         value: 4000
+      # Database (add in Render dashboard)
       - key: MONGODB_URI
         sync: false
+      # Redis (add in Render dashboard or use Redis addon)
       - key: REDIS_URL
         sync: false
+      # AI Provider
       - key: AI_API_URL
         sync: false
       - key: AI_API_KEY
         sync: false
       - key: AI_MODEL
         sync: false
+      # Frontend URL (for CORS)
       - key: FRONTEND_ORIGIN
+        value: https://assessment-creator.vercel.app
+
+  # Background Worker Service (BullMQ Job Processor)
+  - type: worker
+    name: vedaai-worker
+    env: node
+    region: oregon
+    buildCommand: bun install && bun run build
+    startCommand: bun run start:worker
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
+      # Database (same as API)
+      - key: MONGODB_URI
+        sync: false
+      # Redis (same as API - required for BullMQ)
+      - key: REDIS_URL
+        sync: false
+      # AI Provider
+      - key: AI_API_URL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
         sync: false
